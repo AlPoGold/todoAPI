@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 
 from sqlalchemy.orm import DeclarativeBase
 
-engine = create_engine('sqlite+pysqlite:///todolist.db', echo=True)
+engine = create_engine('sqlite:///todolist.db', echo=True)
 SessionLocal = sessionmaker(bind=engine)
 
 class Base(DeclarativeBase):
