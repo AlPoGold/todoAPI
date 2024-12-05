@@ -7,7 +7,7 @@ class CreateTask(BaseModel):
     id: int
     title: str
     description: str = None
-    created_date: datetime = datetime.now()
+    date_created: datetime = datetime.now()
     completed: bool = False
 
 

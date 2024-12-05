@@ -21,7 +21,9 @@ async def get_all_categories(db: Annotated[Session, Depends(get_db)]):
 @router.post('/create_task', status_code=status.HTTP_201_CREATED)
 async def create_category(db: Annotated[Session, Depends(get_db)], create_task: CreateTask):
     db.execute(insert(Task).values(title=create_task.title,
-                                   description=create_task.description))
+                                   description=create_task.description,
+                                   date_created=create_task.date_created,
+                                   completed=create_task.completed))
     db.commit()
     return {
         'status_code': status.HTTP_201_CREATED,
