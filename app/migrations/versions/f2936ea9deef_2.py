@@ -1,8 +1,8 @@
-"""pagination response
+"""2
 
-Revision ID: c1860f1ea623
-Revises: 03750db27387
-Create Date: 2024-12-06 11:03:18.983785
+Revision ID: f2936ea9deef
+Revises: 
+Create Date: 2024-12-06 16:39:33.611421
 
 """
 from typing import Sequence, Union
@@ -12,8 +12,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'c1860f1ea623'
-down_revision: Union[str, None] = '03750db27387'
+revision: str = 'f2936ea9deef'
+down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
