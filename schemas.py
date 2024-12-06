@@ -16,7 +16,7 @@ class CreateTask(BaseModel):
     description: str = None
     date_created: datetime = datetime.now()
     completed: bool = False
-    tags: List[TagCreate]
+    tag: TagCreate
 
     class Config:
         orm_mode = True

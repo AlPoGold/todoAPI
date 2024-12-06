@@ -3,12 +3,8 @@ from database.db import Base
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, Table, ForeignKey, func
 from sqlalchemy.orm import relationship
 
-task_tags = Table(
-    "task_tags",
-    Base.metadata,
-    Column("task_id", Integer, ForeignKey("tasks.id"), primary_key=True),
-    Column("tag_id", Integer, ForeignKey("tags.id"), primary_key=True)
-)
+import json
+
 
 class Task(Base):
     __tablename__ = "tasks"
@@ -18,8 +14,10 @@ class Task(Base):
     description = Column(String, index=True)
     date_created = Column(DateTime, default=func.now())
     completed = Column(Boolean, default=False)
+    tag_id = Column(Integer, ForeignKey('tags.id'))
 
-    tags = relationship("Tag", secondary="task_tags", back_populates="tasks")
+    tag = relationship("Tag", back_populates="tasks")
+
 
 class Tag(Base):
     __tablename__ = "tags"
@@ -27,7 +25,7 @@ class Tag(Base):
     id = Column(Integer, primary_key=True, autoincrement=True, index=True)
     name = Column(String, unique=True, index=True, nullable=False)
 
-    tasks = relationship("Task", secondary="task_tags", back_populates="tags")
+    tasks = relationship("Task", back_populates="tag")
 
 
 from sqlalchemy.schema import CreateTable
