@@ -1,11 +1,7 @@
 
 from database.db import Base
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, Table, ForeignKey, func
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey, func
 from sqlalchemy.orm import relationship
-
-import json
-
-
 class Task(Base):
     __tablename__ = "tasks"
 

@@ -8,7 +8,7 @@ from slugify import slugify
 
 from database.db_depends import get_db
 from models.tasks import Task, Tag
-from schemas import CreateTask, PaginatedResponse
+from schemas import CreateTask, PaginatedResponse, TagCreate
 
 router = APIRouter(prefix='/todo', tags=['filter'])
 
@@ -40,10 +40,21 @@ def get_tasks(
     total = query.count()
     tasks = query.offset((page - 1) * page_size).limit(page_size).all()
 
+    serialized_tasks = [
+        CreateTask(
+            id=task.id,
+            title=task.title,
+            description=task.description,
+            date_created=task.date_created,
+            completed=task.completed,
+            tag=TagCreate(name=task.tag.name) if task.tag else None
+        )
+        for task in tasks
+    ]
     return PaginatedResponse(
         page=page,
         page_size=page_size,
         total=total,
-        tasks=tasks
+        tasks=serialized_tasks
     )
 
